@@ -1,8 +1,8 @@
 ﻿using LabA.Abstraction.IModel;
 
-namespace LabA.Abstraction.IRepository;
+namespace LabA.Abstraction.IServices;
 
-public interface ISexRepository
+public interface ISexService
 {
     public Task<IEnumerable<ISex>> GetAllSexesAsync();
     public Task<ISex?> GetSexByIdAsync(int id);

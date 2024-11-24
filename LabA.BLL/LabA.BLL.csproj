@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="LabA.Abstraction">
+      <HintPath>..\LabA.Abstraction\bin\Debug\net8.0\LabA.Abstraction.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
