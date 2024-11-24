@@ -9,4 +9,6 @@ public interface IEmployeeService
     public Task<IEmployee> AddEmployeeAsync(IEmployee employee);
     public Task<IEmployee?> UpdateEmployeeAsync(int id, IEmployee employee);
     public Task<IEmployee?> DeleteEmployeeAsync(int id);
+
+    public void Validate(IEmployee employee);
 }

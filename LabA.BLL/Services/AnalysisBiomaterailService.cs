@@ -4,34 +4,34 @@ using LabA.Abstraction.IServices;
 
 namespace LabA.BLL.Services;
 
-public class AnalysisBiomaterailService(IUnitOfWork unitOfWork) : IAnalysisBiomaterailService
+public class AnalysisBiomaterailService(IUnitOfWork unitOfWork) : IAnalysisBiomaterialService
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<IEnumerable<IAnalysisBiomaterial>> GetAllAnalysisBiomaterialsAsync()
     {
-        return await _unitOfWork.AnalysisBiomaterailRepository.GetAllAnalysisBiomaterialsAsync();
+        return await _unitOfWork.AnalysisBiomaterialRepository.GetAllAnalysisBiomaterialsAsync();
     }
 
     public async Task<IAnalysisBiomaterial?> GetAnalysisBiomaterialByIdAsync(int id)
     {
-        return await _unitOfWork.AnalysisBiomaterailRepository.GetAnalysisBiomaterialByIdAsync(id);
+        return await _unitOfWork.AnalysisBiomaterialRepository.GetAnalysisBiomaterialByIdAsync(id);
     }
 
     public async Task<IAnalysisBiomaterial> AddAnalysisBiomaterialAsync(IAnalysisBiomaterial analysisBiomaterial)
     {
-        return await _unitOfWork.AnalysisBiomaterailRepository.AddAnalysisBiomaterialAsync(analysisBiomaterial);
+        return await _unitOfWork.AnalysisBiomaterialRepository.AddAnalysisBiomaterialAsync(analysisBiomaterial);
     }
 
     public async Task<IAnalysisBiomaterial?> UpdateAnalysisBiomaterialAsync(int id,
         IAnalysisBiomaterial analysisBiomaterial)
     {
-        return await _unitOfWork.AnalysisBiomaterailRepository.UpdateAnalysisBiomaterialAsync(id, analysisBiomaterial);
+        return await _unitOfWork.AnalysisBiomaterialRepository.UpdateAnalysisBiomaterialAsync(id, analysisBiomaterial);
     }
 
     public async Task<IAnalysisBiomaterial?> DeleteAnalysisBiomaterialAsync(int id)
     {
-        return await _unitOfWork.AnalysisBiomaterailRepository.DeleteAnalysisBiomaterialAsync(id);
+        return await _unitOfWork.AnalysisBiomaterialRepository.DeleteAnalysisBiomaterialAsync(id);
     }
 
     public void Validate(IAnalysisBiomaterial analysisBiomaterial)

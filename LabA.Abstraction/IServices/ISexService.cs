@@ -9,4 +9,6 @@ public interface ISexService
     public Task<ISex> AddSexAsync(ISex sex);
     public Task<ISex?> UpdateSexAsync(int id, ISex sex);
     public Task<ISex?> DeleteSexAsync(int id);
+
+    public void Validate(ISex sex);
 }

@@ -32,4 +32,17 @@ public class ScheduleService(IUnitOfWork unitOfWork) : IScheduleService
     {
         return await unitOfWork.ScheduleRepository.DeleteScheduleAsync(id);
     }
+
+    public void Validate(ISchedule schedule)
+    {
+        if (schedule == null)
+        {
+            throw new ArgumentNullException(nameof(schedule));
+        }
+
+        if (schedule.ScheduleId < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(schedule.ScheduleId));
+        }
+    }
 }

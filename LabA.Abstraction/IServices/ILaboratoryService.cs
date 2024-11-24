@@ -9,4 +9,6 @@ public interface ILaboratoryService
     public Task<ILaboratory> AddLaboratoryAsync(ILaboratory laboratory);
     public Task<ILaboratory?> UpdateLaboratoryAsync(int id, ILaboratory laboratory);
     public Task<ILaboratory?> DeleteLaboratoryAsync(int id);
+
+    public void Validate(ILaboratory laboratory);
 }

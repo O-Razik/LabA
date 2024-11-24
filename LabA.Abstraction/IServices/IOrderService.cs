@@ -9,4 +9,6 @@ public interface IOrderService
     public Task<IOrder> AddOrderAsync(IOrder order);
     public Task<IOrder?> UpdateOrderAsync(int id, IOrder order);
     public Task<IOrder?> DeleteOrderAsync(int id);
+
+    public void Validate(IOrder order);
 }

@@ -9,4 +9,6 @@ public interface IDayService
     public Task<IDay> AddDayAsync(IDay day);
     public Task<IDay?> UpdateDayAsync(int id, IDay day);
     public Task<IDay?> DeleteDayAsync(int id);
+
+    public void Validate(IDay day);
 }

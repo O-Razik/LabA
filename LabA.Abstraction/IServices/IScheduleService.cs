@@ -9,4 +9,6 @@ public interface IScheduleService
     public Task<ISchedule> AddScheduleAsync(ISchedule schedule);
     public Task<ISchedule?> UpdateScheduleAsync(int id, ISchedule schedule);
     public Task<ISchedule?> DeleteScheduleAsync(int id);
+
+    public void Validate(ISchedule schedule);
 }

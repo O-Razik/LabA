@@ -9,4 +9,6 @@ public interface IAnalysisService
     Task<IAnalysis> AddAnalysisAsync(IAnalysis analysis);
     Task<IAnalysis?> UpdateAnalysisAsync(int id,IAnalysis analysis);
     Task<IAnalysis?> DeleteAnalysisAsync(int id);
+
+    void Validate(IAnalysis analysis);
 }

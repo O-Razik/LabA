@@ -33,7 +33,7 @@ public class OrderService(IUnitOfWork unitOfWork) : IOrderService
         return await unitOfWork.OrderRepository.DeleteOrderAsync(id);
     }
 
-    public void ValidateOrder(IOrder order)
+    public void Validate(IOrder order)
     {
         if (order == null)
         {

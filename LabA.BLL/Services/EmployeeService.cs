@@ -33,7 +33,7 @@ public class EmployeeService(IUnitOfWork unitOfWork) : IEmployeeService
         return await _unitOfWork.EmployeeRepository.DeleteEmployeeAsync(id);
     }
 
-    public void ValidateEmployee(IEmployee employee)
+    public void Validate(IEmployee employee)
     {
         if (employee == null)
         {

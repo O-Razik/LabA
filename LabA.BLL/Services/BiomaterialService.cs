@@ -4,33 +4,33 @@ using LabA.Abstraction.IServices;
 
 namespace LabA.BLL.Services;
 
-public class BiomaterailService(IUnitOfWork unitOfWork) : IBiomaterailService
+public class BiomaterialService(IUnitOfWork unitOfWork) : IBiomaterialService
 {
     private readonly IUnitOfWork unitOfWork = unitOfWork;
 
     public async Task<IEnumerable<IBiomaterial>> GetAllBiomaterialsAsync()
     {
-        return await unitOfWork.BiomaterailRepository.GetAllBiomaterialsAsync();
+        return await unitOfWork.BiomaterialRepository.GetAllBiomaterialsAsync();
     }
 
-    public async Task<IBiomaterial?> GetBiomateralAsync(int id)
+    public async Task<IBiomaterial?> GetBiomaterialByIdAsync(int id)
     {
-        return await unitOfWork.BiomaterailRepository.GetBiomateralAsync(id);
+        return await unitOfWork.BiomaterialRepository.GetBiomateralAsync(id);
     }
 
     public async Task<IBiomaterial> AddBiomaterialAsync(IBiomaterial biomaterial)
     {
-        return await unitOfWork.BiomaterailRepository.AddBiomaterialAsync(biomaterial);
+        return await unitOfWork.BiomaterialRepository.AddBiomaterialAsync(biomaterial);
     }
 
     public async Task<IBiomaterial?> UpdateBiomaterialAsync(int id, IBiomaterial biomaterial)
     {
-        return await unitOfWork.BiomaterailRepository.UpdateBiomaterialAsync(id, biomaterial);
+        return await unitOfWork.BiomaterialRepository.UpdateBiomaterialAsync(id, biomaterial);
     }
 
     public async Task<IBiomaterial?> DeleteBiomaterialAsync(int id)
     {
-        return await unitOfWork.BiomaterailRepository.DeleteBiomaterialAsync(id);
+        return await unitOfWork.BiomaterialRepository.DeleteBiomaterialAsync(id);
     }
 
     public void Validate(IBiomaterial biomaterial)

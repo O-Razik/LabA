@@ -9,4 +9,6 @@ public interface IStatusService
     public Task<IStatus> AddStatusAsync(IStatus status);
     public Task<IStatus?> UpdateStatusAsync(int id, IStatus status);
     public Task<IStatus?> DeleteStatusAsync(int id);
+
+    public void Validate(IStatus status);
 }

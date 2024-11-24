@@ -35,18 +35,21 @@ public class AnalysisCategoryService(IUnitOfWork unitOfWork) : IAnalysisCategory
 
     public void Validate(IAnalysisCategory analysisCategory)
     {
-        if (analysisCategory.AnalysisCategoryId < 0)
-        {
-            throw new Exception("Analysis category ID is invalid");
-        }
         if (analysisCategory == null)
         {
             throw new Exception("Analysis category is null");
         }
+
+        if (analysisCategory.AnalysisCategoryId < 0)
+        {
+            throw new Exception("Analysis category ID is invalid");
+        }
+        
         if (analysisCategory.CategoryName.Length == 0)
         {
             throw new Exception("Category name is empty");
         }
+
         if (analysisCategory.CategoryName.Length > 100)
         {
             throw new Exception("Category name is too long");

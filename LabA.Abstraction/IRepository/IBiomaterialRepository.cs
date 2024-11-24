@@ -2,7 +2,7 @@
 
 namespace LabA.Abstraction.IRepository;
 
-public interface IBiomaterailRepository
+public interface IBiomaterialRepository
 {
     public Task<IEnumerable<IBiomaterial>> GetAllBiomaterialsAsync();
     public Task<IBiomaterial?> GetBiomateralAsync(int id);

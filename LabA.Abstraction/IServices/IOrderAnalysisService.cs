@@ -9,4 +9,6 @@ public interface IOrderAnalysisService
     public Task<IOrderAnalysis> AddOrderAnalysisAsync(IOrderAnalysis orderAnalysis);
     public Task<IOrderAnalysis?> UpdateOrderAnalysisAsync(int id, IOrderAnalysis orderAnalysis);
     public Task<IOrderAnalysis?> DeleteOrderAnalysisAsync(int id);
+
+    public void Validate(IOrderAnalysis orderAnalysis);
 }

@@ -9,4 +9,6 @@ public interface ILaboratoryScheduleService
     public Task<ILaboratorySchedule> AddLaboratoryScheduleAsync(ILaboratorySchedule laboratorySchedule);
     public Task<ILaboratorySchedule?> UpdateLaboratoryScheduleAsync(int id, ILaboratorySchedule laboratorySchedule);
     public Task<ILaboratorySchedule?> DeleteLaboratoryScheduleAsync(int id);
+
+    public void Validate(ILaboratorySchedule laboratorySchedule);
 }

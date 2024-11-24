@@ -10,4 +10,6 @@ public interface IAnalysisCategoryService
     public Task<IAnalysisCategory?> UpdateAnalysisCategory(int id, IAnalysisCategory analysisCategory);
     public Task<IAnalysisCategory?> DeleteAnalysisCategory(int id);
 
+    public void Validate(IAnalysisCategory analysisCategory);
+
 }

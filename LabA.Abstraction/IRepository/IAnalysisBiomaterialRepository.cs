@@ -1,8 +1,8 @@
 ﻿using LabA.Abstraction.IModel;
 
-namespace LabA.Abstraction.IServices;
+namespace LabA.Abstraction.IRepository;
 
-public interface IAnalysisBiomaterailService
+public interface IAnalysisBiomaterialRepository
 {
     Task<IEnumerable<IAnalysisBiomaterial>> GetAllAnalysisBiomaterialsAsync();
     Task<IAnalysisBiomaterial?> GetAnalysisBiomaterialByIdAsync(int id);

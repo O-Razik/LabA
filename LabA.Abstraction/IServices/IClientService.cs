@@ -10,4 +10,6 @@ public interface IClientService
     public Task<IClient?> UpdateClientAsync(int id, IClient client);
 
     public Task<IClient?> DeleteClientAsync(int id);
+
+    public void Validate(IClient client);
 }

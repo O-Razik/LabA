@@ -2,11 +2,13 @@
 
 namespace LabA.Abstraction.IServices;
 
-public interface IBiomaterailService
+public interface IBiomaterialService
 {
     public Task<IEnumerable<IBiomaterial>> GetAllBiomaterialsAsync();
-    public Task<IBiomaterial?> GetBiomateralAsync(int id);
+    public Task<IBiomaterial?> GetBiomaterialByIdAsync(int id);
     public Task<IBiomaterial> AddBiomaterialAsync(IBiomaterial biomaterial);
     public Task<IBiomaterial?> UpdateBiomaterialAsync(int id, IBiomaterial biomaterial);
     public Task<IBiomaterial?> DeleteBiomaterialAsync(int id);
+
+    public void Validate(IBiomaterial biomaterial);
 }

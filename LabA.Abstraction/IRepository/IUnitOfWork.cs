@@ -5,9 +5,9 @@ public interface IUnitOfWork
 
     public IAnalysisRepository AnalysisRepository { get; }
     public IAnalysisCategoryRepository AnalysisCategoryRepository { get; }
-    public IAnalysisBiomaterailRepository AnalysisBiomaterailRepository { get; }
+    public IAnalysisBiomaterialRepository AnalysisBiomaterialRepository { get; }
     public IAnalysisResultRepository AnalysisResultRepository { get; }
-    public IBiomaterailRepository BiomaterailRepository { get; }
+    public IBiomaterialRepository BiomaterialRepository { get; }
     public IClientRepository ClientRepository { get; }
     public ICityRepository CityRepository { get; }
     public IDayRepository DayRepository { get; }

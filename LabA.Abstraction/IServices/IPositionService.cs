@@ -9,4 +9,6 @@ public interface IPositionService
     public Task<IPosition> AddPositionAsync(IPosition position);
     public Task<IPosition?> UpdatePositionAsync(int id, IPosition position);
     public Task<IPosition?> DeletePositionAsync(int id);
+
+    public void Validate(IPosition position);
 }

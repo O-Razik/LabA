@@ -32,4 +32,17 @@ public class StatusService(IUnitOfWork unitOfWork) : IStatusService
     {
         return await _unitOfWork.StatusRepository.DeleteStatusAsync(id);
     }
+
+    public void Validate(IStatus status)
+    {
+        if (status == null)
+        {
+            throw new ArgumentNullException(nameof(status));
+        }
+
+        if (status.StatusId < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(status.StatusId));
+        }
+    }
 }

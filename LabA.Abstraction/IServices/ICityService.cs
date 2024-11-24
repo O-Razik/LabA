@@ -9,4 +9,6 @@ public interface ICityService
     public Task<ICity> AddCityAsync(ICity city);
     public Task<ICity?> UpdateCityAsync(int id, ICity city);
     public Task<ICity?> DeleteCityAsync(int id);
+
+    public void Validate(ICity city);
 }

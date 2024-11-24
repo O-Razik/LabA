@@ -32,4 +32,24 @@ public class PositionService(IUnitOfWork unitOfWork) : IPositionService
     {
         return await unitOfWork.PositionRepository.DeletePositionAsync(id);
     }
+
+    public void Validate(IPosition position)
+    {
+        if (position == null)
+        {
+            throw new ArgumentNullException("Position cannot be null");
+        }
+        if (position.PositionId < 0)
+        {
+            throw new ArgumentOutOfRangeException("Position id cannot be less than 0");
+        }
+        if (position.PositionName == null)
+        {
+            throw new ArgumentNullException("Position name cannot be null");
+        }
+        if (position.PositionName.Length < 3)
+        {
+            throw new ArgumentException("Position name must be at least 3 characters long");
+        }
+    }
 }
