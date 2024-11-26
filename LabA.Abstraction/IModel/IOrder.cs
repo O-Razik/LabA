@@ -15,4 +15,12 @@ public interface IOrder
     public DateTime BiomaterialCollectionDate { get; set; }
 
     public double Fullprice { get; set; }
+
+    public IClient Client { get; set; }
+
+    public IEmployee Employee { get; set; }
+
+    public ICollection<IOrderAnalysis> OrderAnalyses { get; set; }
+
+    public IStatus Status { get; set; }
 }

@@ -13,4 +13,10 @@ public partial class Biomaterial : IBiomaterial
     public string BiomaterialName { get; set; }
 
     public virtual ICollection<AnalysisBiomaterial> AnalysisBiomaterials { get; set; } = new List<AnalysisBiomaterial>();
+
+    ICollection<IAnalysisBiomaterial> IBiomaterial.AnalysisBiomaterials
+    {
+        get => AnalysisBiomaterials.Cast<IAnalysisBiomaterial>().ToList();
+        set => AnalysisBiomaterials = value.Cast<AnalysisBiomaterial>().ToList();
+    }
 }

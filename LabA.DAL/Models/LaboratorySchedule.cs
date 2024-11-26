@@ -17,4 +17,16 @@ public partial class LaboratorySchedule : ILaboratorySchedule
     public virtual Laboratory Laboratory { get; set; }
 
     public virtual Schedule Schedule { get; set; }
+
+    ILaboratory ILaboratorySchedule.Laboratory
+    {
+        get => Laboratory;
+        set => Laboratory = (Laboratory)value;
+    }
+
+    ISchedule ILaboratorySchedule.Schedule
+    {
+        get => Schedule;
+        set => Schedule = (Schedule)value;
+    }
 }

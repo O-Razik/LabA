@@ -4,32 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class CityController : ControllerBase
+[Route("api/[controller]")]
+[ApiController]
+public class ClientsController : ControllerBase
 {
-    private readonly ICityService _service;
+    private readonly IClientService _service;
 
-    public CityController(ICityService service)
+    public ClientsController(IClientService service)
     {
         _service = service;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ICity>>> GetAll()
+    public async Task<ActionResult<IEnumerable<IClient>>> GetAll()
     {
-        var result = await _service.GetAllCitiesAsync();
+        var result = await _service.GetAllClientsAsync();
         return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ICity>> GetById(int id)
+    public async Task<ActionResult<IClient>> GetById(int id)
     {
-        var result = await _service.GetCityByIdAsync(id);
+        var result = await _service.GetClientByIdAsync(id);
         if (result == null) return NotFound();
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ICity>> Post(ICity model)
+    public async Task<ActionResult<IClient>> Post(IClient model)
     {
         try
         {
@@ -39,14 +41,14 @@ public class CityController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        var result = await _service.AddCityAsync(model);
-        return CreatedAtAction(nameof(GetById), new { id = result.CityId }, result);
+        var result = await _service.AddClientAsync(model);
+        return CreatedAtAction(nameof(GetById), new { id = result.ClientId }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, ICity model)
+    public async Task<IActionResult> Put(int id, IClient model)
     {
-        if (id != model.CityId) return BadRequest();
+        if (id != model.ClientId) return BadRequest();
         try
         {
             _service.Validate(model);
@@ -55,14 +57,14 @@ public class CityController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        await _service.UpdateCityAsync(id, model);
+        await _service.UpdateClientAsync(id, model);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _service.DeleteCityAsync(id);
+        await _service.DeleteClientAsync(id);
         return NoContent();
     }
 }

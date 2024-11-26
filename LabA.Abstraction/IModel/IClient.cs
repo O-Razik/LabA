@@ -15,4 +15,8 @@ public interface IClient
     public string Email { get; set; }
 
     public DateOnly Birthdate { get; set; }
+
+    public ICollection<IOrder> Orders { get; set; }
+
+    public ISex Sex { get; set; }
 }

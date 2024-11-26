@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class LaboratoryScheduleController : Controller
+[Route("api/[controller]")]
+[ApiController]
+public class LaboratorySchedulesController : Controller
 {
     private readonly ILaboratoryScheduleService _service;
 
-    public LaboratoryScheduleController(ILaboratoryScheduleService service)
+    public LaboratorySchedulesController(ILaboratoryScheduleService service)
     {
         _service = service;
     }

@@ -13,4 +13,10 @@ public partial class City : ICity
     public string CityName { get; set; }
 
     public virtual ICollection<Laboratory> Laboratories { get; set; } = new List<Laboratory>();
+
+    ICollection<ILaboratory> ICity.Laboratories
+    {
+        get => Laboratories.Cast<ILaboratory>().ToList();
+        set => Laboratories = value.Cast<Laboratory>().ToList();
+    }
 }

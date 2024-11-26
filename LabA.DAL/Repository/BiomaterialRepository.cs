@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
 
-public class BiomaterailRepository(LabAContext context) : IBiomaterailRepository
+public class BiomaterialRepository(LabAContext context) : IBiomaterialRepository
 {
     public async Task<IEnumerable<IBiomaterial>> GetAllBiomaterialsAsync()
     {

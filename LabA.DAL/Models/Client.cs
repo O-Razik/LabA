@@ -25,4 +25,16 @@ public partial class Client : IClient
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Sex Sex { get; set; }
+
+    ICollection<IOrder> IClient.Orders
+    {
+        get => Orders.Cast<IOrder>().ToList();
+        set => Orders = value.Cast<Order>().ToList();
+    }
+
+    ISex IClient.Sex
+    {
+        get => Sex;
+        set => Sex = (Sex)value;
+    }
 }

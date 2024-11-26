@@ -12,4 +12,17 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AutoMapper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LabA.Abstraction\LabA.Abstraction.csproj" />
+    <ProjectReference Include="..\LabA.DAL\LabA.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

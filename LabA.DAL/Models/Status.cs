@@ -13,4 +13,10 @@ public partial class Status : IStatus
     public string StatusName { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    ICollection<IOrder> IStatus.Orders
+    {
+        get => Orders.Cast<IOrder>().ToList();
+        set => Orders = value.Cast<Order>().ToList();
+    }
 }

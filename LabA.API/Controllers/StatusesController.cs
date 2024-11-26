@@ -4,32 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class ScheduleController : Controller
+[Route("api/[controller]")]
+[ApiController]
+public class StatusesController : ControllerBase
 {
-    private readonly IScheduleService _service;
+    private readonly IStatusService _service;
 
-    public ScheduleController(IScheduleService service)
+    public StatusesController(IStatusService service)
     {
         _service = service;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ISchedule>>> GetAll()
+    public async Task<ActionResult<IEnumerable<IStatus>>> GetAll()
     {
-        var result = await _service.GetAllSchedulesAsync();
+        var result = await _service.GetAllStatusesAsync();
         return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ISchedule>> GetById(int id)
+    public async Task<ActionResult<IStatus>> GetById(int id)
     {
-        var result = await _service.GetScheduleByIdAsync(id);
+        var result = await _service.GetStatusByIdAsync(id);
         if (result == null) return NotFound();
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ISchedule>> Post(ISchedule model)
+    public async Task<ActionResult<IStatus>> Post(IStatus model)
     {
         try
         {
@@ -39,14 +41,14 @@ public class ScheduleController : Controller
         {
             return BadRequest(ex.Message);
         }
-        var result = await _service.AddScheduleAsync(model);
-        return CreatedAtAction(nameof(GetById), new { id = result.ScheduleId }, result);
+        var result = await _service.AddStatusAsync(model);
+        return CreatedAtAction(nameof(GetById), new { id = result.StatusId }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, ISchedule model)
+    public async Task<IActionResult> Put(int id, IStatus model)
     {
-        if (id != model.ScheduleId) return BadRequest();
+        if (id != model.StatusId) return BadRequest();
         try
         {
             _service.Validate(model);
@@ -55,14 +57,14 @@ public class ScheduleController : Controller
         {
             return BadRequest(ex.Message);
         }
-        await _service.UpdateScheduleAsync(id, model);
+        await _service.UpdateStatusAsync(id, model);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _service.DeleteScheduleAsync(id);
+        await _service.DeleteStatusAsync(id);
         return NoContent();
     }
 }

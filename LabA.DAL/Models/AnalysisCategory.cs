@@ -13,4 +13,10 @@ public partial class AnalysisCategory : IAnalysisCategory
     public string CategoryName { get; set; }
 
     public virtual ICollection<Analysis> Analyses { get; set; } = new List<Analysis>();
+
+    ICollection<IAnalysis> IAnalysisCategory.Analyses
+    {
+        get => Analyses.Cast<IAnalysis>().ToList();
+        set => Analyses = value.Cast<Analysis>().ToList();
+    }
 }

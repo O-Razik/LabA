@@ -9,4 +9,10 @@ public interface ILaboratory
     public int CityId { get; set; }
 
     public string PhoneNumber { get; set; }
+
+    public ICity City { get; set; }
+
+    public ICollection<IEmployee> Employees { get; set; }
+
+    public ICollection<ILaboratorySchedule> LaboratorySchedules { get; set; }
 }

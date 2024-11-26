@@ -17,4 +17,16 @@ public partial class AnalysisBiomaterial : IAnalysisBiomaterial
     public virtual Analysis Analysis { get; set; }
 
     public virtual Biomaterial Biomaterial { get; set; }
+
+    IAnalysis IAnalysisBiomaterial.Analysis
+    {
+        get => Analysis;
+        set => Analysis = (Analysis)value;
+    }
+
+    IBiomaterial IAnalysisBiomaterial.Biomaterial
+    {
+        get => Biomaterial;
+        set => Biomaterial = (Biomaterial)value;
+    }
 }

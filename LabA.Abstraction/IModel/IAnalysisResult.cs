@@ -11,4 +11,6 @@ public interface IAnalysisResult
     public DateTime ExecutionDate { get; set; }
 
     public string Description { get; set; }
+
+    public IOrderAnalysis OrderAnalysis { get; set; }
 }

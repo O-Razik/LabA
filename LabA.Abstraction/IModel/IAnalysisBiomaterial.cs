@@ -7,4 +7,8 @@ public interface IAnalysisBiomaterial
     public int AnalysisId { get; set; }
 
     public int BiomaterialId { get; set; }
+
+    public IAnalysis Analysis { get; set; }
+
+    public IBiomaterial Biomaterial { get; set; }
 }

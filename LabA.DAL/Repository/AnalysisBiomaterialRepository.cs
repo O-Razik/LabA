@@ -6,7 +6,7 @@ using LabA.DAL.Mappers;
 
 namespace LabA.DAL.Repository;
 
-public class AnalysisBiomaterailRepository(LabAContext context) : IAnalysisBiomaterailRepository
+public class AnalysisBiomaterialRepository(LabAContext context) : IAnalysisBiomaterialRepository
 {
     public async Task<IEnumerable<IAnalysisBiomaterial>> GetAllAnalysisBiomaterialsAsync()
     {

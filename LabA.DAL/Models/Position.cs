@@ -13,4 +13,10 @@ public partial class Position : IPosition
     public string PositionName { get; set; }
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+
+    ICollection<IEmployee> IPosition.Employees
+    {
+        get => Employees.Cast<IEmployee>().ToList();
+        set => Employees = value.Cast<Employee>().ToList();
+    }
 }

@@ -11,4 +11,8 @@ public interface ISchedule
     public TimeOnly EndTime { get; set; }
 
     public TimeOnly CollectionEndTime { get; set; }
+
+    public IDay Day { get; set; }
+
+    public ICollection<ILaboratorySchedule> LaboratorySchedules { get; set; }
 }

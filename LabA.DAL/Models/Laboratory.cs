@@ -21,4 +21,22 @@ public partial class Laboratory : ILaboratory
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
     public virtual ICollection<LaboratorySchedule> LaboratorySchedules { get; set; } = new List<LaboratorySchedule>();
+
+    ICollection<IEmployee> ILaboratory.Employees
+    {
+        get => Employees.Cast<IEmployee>().ToList();
+        set => Employees = value.Cast<Employee>().ToList();
+    }
+
+    ICollection<ILaboratorySchedule> ILaboratory.LaboratorySchedules
+    {
+        get => LaboratorySchedules.Cast<ILaboratorySchedule>().ToList();
+        set => LaboratorySchedules = value.Cast<LaboratorySchedule>().ToList();
+    }
+
+    ICity ILaboratory.City
+    {
+        get => City;
+        set => City = (City)value;
+    }
 }

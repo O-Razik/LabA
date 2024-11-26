@@ -21,4 +21,16 @@ public partial class Schedule : ISchedule
     public virtual Day Day { get; set; }
 
     public virtual ICollection<LaboratorySchedule> LaboratorySchedules { get; set; } = new List<LaboratorySchedule>();
+
+    ICollection<ILaboratorySchedule> ISchedule.LaboratorySchedules
+    {
+        get => LaboratorySchedules.Cast<ILaboratorySchedule>().ToList();
+        set => LaboratorySchedules = value.Cast<LaboratorySchedule>().ToList();
+    }
+
+    IDay ISchedule.Day
+    {
+        get => Day;
+        set => Day = (Day)value;
+    }
 }

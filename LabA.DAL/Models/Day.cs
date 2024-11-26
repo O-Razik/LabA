@@ -13,4 +13,10 @@ public partial class Day : IDay
     public string DayName { get; set; }
 
     public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+
+    ICollection<ISchedule> IDay.Schedules
+    {
+        get => Schedules.Cast<ISchedule>().ToList();
+        set => Schedules = value.Cast<Schedule>().ToList();
+    }
 }

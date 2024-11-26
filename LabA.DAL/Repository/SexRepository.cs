@@ -16,7 +16,7 @@ public class SexRepository(LabAContext context) : ISexRepository
         return sexes.Cast<ISex>().ToList();
     }
 
-    public async Task<ISex?> GetSexById(int id)
+    public async Task<ISex?> GetSexByIdAsync(int id)
     {
         return await context.Sexes.Where(s => s.SexId == id).FirstOrDefaultAsync();
     }

@@ -29,4 +29,28 @@ public partial class Order : IOrder
     public virtual ICollection<OrderAnalysis> OrderAnalyses { get; set; } = new List<OrderAnalysis>();
 
     public virtual Status Status { get; set; }
+
+    ICollection<IOrderAnalysis> IOrder.OrderAnalyses
+    {
+        get => OrderAnalyses.Cast<IOrderAnalysis>().ToList();
+        set => OrderAnalyses = value.Cast<OrderAnalysis>().ToList();
+    }
+
+    IClient IOrder.Client
+    {
+        get => Client;
+        set => Client = (Client)value;
+    }
+
+    IEmployee IOrder.Employee
+    {
+        get => Employee;
+        set => Employee = (Employee)value;
+    }
+
+    IStatus IOrder.Status
+    {
+        get => Status;
+        set => Status = (Status)value;
+    }
 }

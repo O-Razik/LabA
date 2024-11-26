@@ -15,4 +15,10 @@ public interface IEmployee
     public string PhoneNumber { get; set; }
 
     public string Email { get; set; }
+
+    public ILaboratory Laboratory { get; set; }
+
+    public ICollection<IOrder> Orders { get; set; }
+
+    public IPosition Position { get; set; }
 }

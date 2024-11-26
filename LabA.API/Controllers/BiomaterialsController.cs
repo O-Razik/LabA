@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class BiomaterialController : ControllerBase
+[Route("api/[controller]")]
+[ApiController]
+public class BiomaterialsController : ControllerBase
 {
     private readonly IBiomaterialService _service;
 
-    public BiomaterialController(IBiomaterialService service)
+    public BiomaterialsController(IBiomaterialService service)
     {
         _service = service;
     }

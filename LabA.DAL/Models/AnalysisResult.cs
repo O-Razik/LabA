@@ -19,4 +19,10 @@ public partial class AnalysisResult : IAnalysisResult
     public string Description { get; set; }
 
     public virtual OrderAnalysis OrderAnalysis { get; set; }
+
+    IOrderAnalysis IAnalysisResult.OrderAnalysis
+    {
+        get => OrderAnalysis;
+        set => OrderAnalysis = (OrderAnalysis)value;
+    }
 }

@@ -13,4 +13,10 @@ public partial class Sex : ISex
     public string SexName { get; set; }
 
     public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
+
+    ICollection<IClient> ISex.Clients
+    {
+        get => Clients.Cast<IClient>().ToList();
+        set => Clients = value.Cast<Client>().ToList();
+    }
 }

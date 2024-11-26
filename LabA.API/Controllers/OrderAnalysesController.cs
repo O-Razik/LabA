@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class OrderAnalysisController : ControllerBase
+[Route("api/[controller]")]
+[ApiController]
+public class OrderAnalysesController : ControllerBase
 {
     private readonly IOrderAnalysisService _service;
 
-    public OrderAnalysisController(IOrderAnalysisService service)
+    public OrderAnalysesController(IOrderAnalysisService service)
     {
         _service = service;
     }

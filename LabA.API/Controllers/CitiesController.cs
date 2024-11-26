@@ -4,32 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class SexController : Controller
+[Route("api/[controller]")]
+[ApiController]
+public class CitiesController : ControllerBase
 {
-    private readonly ISexService _service;
+    private readonly ICityService _service;
 
-    public SexController(ISexService service)
+    public CitiesController(ICityService service)
     {
         _service = service;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ISex>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ICity>>> GetAll()
     {
-        var result = await _service.GetAllSexesAsync();
+        var result = await _service.GetAllCitiesAsync();
         return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ISex>> GetById(int id)
+    public async Task<ActionResult<ICity>> GetById(int id)
     {
-        var result = await _service.GetSexByIdAsync(id);
+        var result = await _service.GetCityByIdAsync(id);
         if (result == null) return NotFound();
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ISex>> Post(ISex model)
+    public async Task<ActionResult<ICity>> Post(ICity model)
     {
         try
         {
@@ -39,14 +41,14 @@ public class SexController : Controller
         {
             return BadRequest(ex.Message);
         }
-        var result = await _service.AddSexAsync(model);
-        return CreatedAtAction(nameof(GetById), new { id = result.SexId }, result);
+        var result = await _service.AddCityAsync(model);
+        return CreatedAtAction(nameof(GetById), new { id = result.CityId }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, ISex model)
+    public async Task<IActionResult> Put(int id, ICity model)
     {
-        if (id != model.SexId) return BadRequest();
+        if (id != model.CityId) return BadRequest();
         try
         {
             _service.Validate(model);
@@ -55,14 +57,14 @@ public class SexController : Controller
         {
             return BadRequest(ex.Message);
         }
-        await _service.UpdateSexAsync(id, model);
+        await _service.UpdateCityAsync(id, model);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _service.DeleteSexAsync(id);
+        await _service.DeleteCityAsync(id);
         return NoContent();
     }
 }

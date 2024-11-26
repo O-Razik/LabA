@@ -27,4 +27,22 @@ public partial class Employee : IEmployee
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Position Position { get; set; }
+
+    ICollection<IOrder> IEmployee.Orders
+    {
+        get => Orders.Cast<IOrder>().ToList();
+        set => Orders = value.Cast<Order>().ToList();
+    }
+
+    ILaboratory IEmployee.Laboratory
+    {
+        get => Laboratory;
+        set => Laboratory = (Laboratory)value;
+    }
+
+    IPosition IEmployee.Position
+    {
+        get => Position;
+        set => Position = (Position)value;
+    }
 }

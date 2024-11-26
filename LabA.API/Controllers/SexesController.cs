@@ -4,32 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class DayController : ControllerBase
+[Route("api/[controller]")]
+[ApiController]
+public class SexesController : Controller
 {
-    private readonly IDayService _service;
+    private readonly ISexService _service;
 
-    public DayController(IDayService service)
+    public SexesController(ISexService service)
     {
         _service = service;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<IDay>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ISex>>> GetAll()
     {
-        var result = await _service.GetAllDaysAsync();
+        var result = await _service.GetAllSexesAsync();
         return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<IDay>> GetById(int id)
+    public async Task<ActionResult<ISex>> GetById(int id)
     {
-        var result = await _service.GetDayByIdAsync(id);
+        var result = await _service.GetSexByIdAsync(id);
         if (result == null) return NotFound();
         return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<IDay>> Post(IDay model)
+    public async Task<ActionResult<ISex>> Post(ISex model)
     {
         try
         {
@@ -39,14 +41,14 @@ public class DayController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        var result = await _service.AddDayAsync(model);
-        return CreatedAtAction(nameof(GetById), new { id = result.DayId }, result);
+        var result = await _service.AddSexAsync(model);
+        return CreatedAtAction(nameof(GetById), new { id = result.SexId }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, IDay model)
+    public async Task<IActionResult> Put(int id, ISex model)
     {
-        if (id != model.DayId) return BadRequest();
+        if (id != model.SexId) return BadRequest();
         try
         {
             _service.Validate(model);
@@ -55,14 +57,14 @@ public class DayController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        await _service.UpdateDayAsync(id, model);
+        await _service.UpdateSexAsync(id, model);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        await _service.DeleteDayAsync(id);
+        await _service.DeleteSexAsync(id);
         return NoContent();
     }
 }

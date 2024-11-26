@@ -9,9 +9,9 @@ public class UnitOfWork(LabAContext context) : IUnitOfWork
 
     public IAnalysisRepository AnalysisRepository { get; } = new AnalysisRepository(context);
     public IAnalysisCategoryRepository AnalysisCategoryRepository { get; } = new AnalysisCategoryRepository(context);
-    public IAnalysisBiomaterailRepository AnalysisBiomaterailRepository { get; } = new AnalysisBiomaterailRepository(context);
+    public IAnalysisBiomaterialRepository AnalysisBiomaterialRepository { get; } = new AnalysisBiomaterialRepository(context);
     public IAnalysisResultRepository AnalysisResultRepository { get; } = new AnalysisResultRepository(context);
-    public IBiomaterailRepository BiomaterailRepository { get; } = new BiomaterailRepository(context);
+    public IBiomaterialRepository BiomaterialRepository { get; } = new BiomaterialRepository(context);
     public IClientRepository ClientRepository { get; } = new ClientRepository(context);
     public ICityRepository CityRepository { get; } = new CityRepository(context);
     public IDayRepository DayRepository { get; } = new DayRepository(context);

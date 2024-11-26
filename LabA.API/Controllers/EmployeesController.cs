@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabA.API.Controllers;
 
-public class EmployeeController : Controller
+[Route("api/[controller]")]
+[ApiController]
+public class EmployeesController : Controller
 {
     private readonly IEmployeeService _service;
 
-    public EmployeeController(IEmployeeService service)
+    public EmployeesController(IEmployeeService service)
     {
         _service = service;
     }

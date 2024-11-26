@@ -23,4 +23,22 @@ public partial class Analysis : IAnalysis
     public virtual AnalysisCategory Category { get; set; }
 
     public virtual ICollection<OrderAnalysis> OrderAnalyses { get; set; } = new List<OrderAnalysis>();
+
+    ICollection<IAnalysisBiomaterial> IAnalysis.AnalysisBiomaterials 
+    {
+        get => AnalysisBiomaterials.Cast<IAnalysisBiomaterial>().ToList();
+        set => AnalysisBiomaterials = value.Cast<AnalysisBiomaterial>().ToList();
+    }
+
+    IAnalysisCategory IAnalysis.Category
+    {
+        get => Category;
+        set => Category = (AnalysisCategory)value;
+    }
+
+    ICollection<IOrderAnalysis> IAnalysis.OrderAnalyses
+    {
+        get => OrderAnalyses.Cast<IOrderAnalysis>().ToList();
+        set => OrderAnalyses = value.Cast<OrderAnalysis>().ToList();
+    }
 }

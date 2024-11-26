@@ -19,4 +19,22 @@ public partial class OrderAnalysis : IOrderAnalysis
     public virtual ICollection<AnalysisResult> AnalysisResults { get; set; } = new List<AnalysisResult>();
 
     public virtual Order Order { get; set; }
+
+    IAnalysis IOrderAnalysis.Analysis
+    {
+        get => Analysis;
+        set => Analysis = (Analysis)value;
+    }
+
+    ICollection<IAnalysisResult> IOrderAnalysis.AnalysisResults
+    {
+        get => AnalysisResults.Cast<IAnalysisResult>().ToList();
+        set => AnalysisResults = value.Cast<AnalysisResult>().ToList();
+    }
+
+    IOrder IOrderAnalysis.Order
+    {
+        get => Order;
+        set => Order = (Order)value;
+    }
 }
