@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using LabA.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,46 +20,5 @@ public class SexRepository(LabAContext context) : ISexRepository
     public async Task<ISex?> GetSexByIdAsync(int id)
     {
         return await context.Sexes.Where(s => s.SexId == id).FirstOrDefaultAsync();
-    }
-
-    public async Task<ISex> AddSexAsync(ISex sex)
-    {
-        ArgumentNullException.ThrowIfNull(sex, nameof(sex));
-
-        var entity = sex.MapToEntity();
-        await context.Sexes.AddAsync(entity);
-        await context.SaveChangesAsync();
-
-        return entity;
-    }
-
-    public async Task<ISex?> UpdateSexAsync(int id, ISex sex)
-    {
-        ArgumentNullException.ThrowIfNull(sex, nameof(sex));
-
-        var existingSex = await context.Sexes.FirstOrDefaultAsync(a => a.SexId == id);
-        if (existingSex == null)
-        {
-            return null;
-        }
-
-        context.Entry(existingSex).CurrentValues.SetValues(sex);
-        await context.SaveChangesAsync();
-
-        return existingSex;
-    }
-
-    public async Task<ISex?> DeleteSexAsync(int id)
-    {
-        var entity = await context.Sexes.Where(s => s.SexId == id).FirstOrDefaultAsync();
-
-        if (entity == null)
-        {
-            return null;
-        }
-
-        context.Sexes.Remove(entity);
-        await context.SaveChangesAsync();
-        return entity;
     }
 }

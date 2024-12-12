@@ -13,9 +13,19 @@ public class AnalysisService(IUnitOfWork unitOfWork) : IAnalysisService
         return await unitOfWork.AnalysisRepository.GetAllAnalysisAsync();
     }
 
+    public async Task<IEnumerable<IAnalysis>> GetAnalysisFilteredAsync(string? name, string? categoryName, double? price)
+    {
+        return await unitOfWork.AnalysisRepository.GetAnalysisFilteredAsync(name, categoryName, price);
+    }
+
     public async Task<IAnalysis?> GetAnalysisByIdAsync(int id)
     {
         return await unitOfWork.AnalysisRepository.GetAnalysisByIdAsync(id);
+    }
+
+    public async Task<IAnalysis?> GetAnalysisByNameAsync(string name)
+    {
+        return await unitOfWork.AnalysisRepository.GetAnalysisByNameAsync(name);
     }
 
     public async Task<IAnalysis> AddAnalysisAsync(IAnalysis analysis)

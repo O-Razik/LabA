@@ -39,11 +39,6 @@ public class AnalysisCategoryService(IUnitOfWork unitOfWork) : IAnalysisCategory
         {
             throw new Exception("Analysis category is null");
         }
-
-        if (analysisCategory.AnalysisCategoryId < 0)
-        {
-            throw new Exception("Analysis category ID is invalid");
-        }
         
         if (analysisCategory.CategoryName.Length == 0)
         {

@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -22,6 +23,13 @@ public class BiomaterialRepository(LabAContext context) : IBiomaterialRepository
     public async Task<IBiomaterial> AddBiomaterialAsync(IBiomaterial biomaterial)
     {
         ArgumentNullException.ThrowIfNull(biomaterial, nameof(biomaterial));
+
+        // Safely get the maximum BiomaterialId or default to 0 if there are no entries
+        var index = await context.Biomaterials.AnyAsync()
+            ? await context.Biomaterials.MaxAsync(b => b.BiomaterialId)
+            : 0;
+
+        biomaterial.BiomaterialId = index + 1;
 
         var entity = biomaterial.MapToEntity();
         context.Biomaterials.Add(entity);

@@ -41,11 +41,6 @@ public class AnalysisBiomaterailService(IUnitOfWork unitOfWork) : IAnalysisBioma
             throw new ArgumentNullException(nameof(analysisBiomaterial));
         }
 
-        if (analysisBiomaterial.AnalysisBiomaterialId < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(analysisBiomaterial.AnalysisBiomaterialId));
-        }
-
         if (analysisBiomaterial.AnalysisId < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(analysisBiomaterial.AnalysisId));

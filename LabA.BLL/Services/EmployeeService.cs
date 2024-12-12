@@ -1,4 +1,5 @@
-﻿using LabA.Abstraction.IModel;
+﻿using LabA.Abstraction.DTO;
+using LabA.Abstraction.IModel;
 using LabA.Abstraction.IRepository;
 using LabA.Abstraction.IServices;
 
@@ -74,5 +75,10 @@ public class EmployeeService(IUnitOfWork unitOfWork) : IEmployeeService
         {
             throw new ArgumentOutOfRangeException(nameof(employee.LaboratoryId));
         }
+    }
+
+    public Task<IEnumerable<IEmployee>> GetEmployeesByLaboratoryAsync(ILaboratory laboratory)
+    {
+        return _unitOfWork.EmployeeRepository.GetEmployeesByLaboratoryAsync(laboratory);
     }
 }

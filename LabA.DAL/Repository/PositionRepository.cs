@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;

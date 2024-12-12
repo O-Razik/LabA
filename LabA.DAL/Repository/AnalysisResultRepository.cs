@@ -1,11 +1,11 @@
 ﻿using LabA.Abstraction.IModel;
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
-using LabA.DAL.Mappers;
 using LabA.DAL.Models;
 
 namespace LabA.DAL.Repository;
 
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 public class AnalysisResultRepository(LabAContext context) : IAnalysisResultRepository
@@ -28,6 +28,13 @@ public class AnalysisResultRepository(LabAContext context) : IAnalysisResultRepo
         ArgumentNullException.ThrowIfNull(analysisResult, nameof(analysisResult));
 
         var entity = analysisResult.MapToEntity();
+
+        // Safely get the maximum AnalysisResultId or default to 0 if there are no entries
+        var index = await context.AnalysisResults.AnyAsync()
+            ? await context.AnalysisResults.MaxAsync(a => a.AnalysisResultId)
+            : 0;
+
+        entity.AnalysisResultId = index + 1;
         await context.AnalysisResults.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;

@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -28,6 +29,12 @@ public class ClientRepository(LabAContext context) : IClientRepository
         ArgumentNullException.ThrowIfNull(client, nameof(client));
 
         var entity = client.MapToEntity();
+
+        if (entity.Sex != null)
+        {
+            context.Entry(entity.Sex).State = EntityState.Unchanged;
+        }
+
         await context.Clients.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;

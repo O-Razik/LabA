@@ -18,6 +18,17 @@ namespace LabA.API
 
             builder.AddAll();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,7 +43,7 @@ namespace LabA.API
             }
 
 
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

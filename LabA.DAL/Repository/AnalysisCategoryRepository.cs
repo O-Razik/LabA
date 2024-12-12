@@ -3,6 +3,7 @@ using LabA.Abstraction.IRepository;
 using LabA.Abstraction.IModel;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 
 namespace LabA.DAL.Repository;
 
@@ -24,10 +25,20 @@ public class AnalysisCategoryRepository(LabAContext context) : IAnalysisCategory
         ArgumentNullException.ThrowIfNull(analysisCategory);
 
         var entity = analysisCategory.MapToEntity();
+
+        // Safely get the maximum AnalysisCategoryId or default to 0 if there are no entries
+        var index = await context.AnalysisCategories.AnyAsync()
+            ? await context.AnalysisCategories.MaxAsync(c => c.AnalysisCategoryId)
+            : 0;
+
+        entity.AnalysisCategoryId = index + 1;
+
         await context.AnalysisCategories.AddAsync(entity);
         await context.SaveChangesAsync();
+
         return entity;
     }
+
 
     public async Task<IAnalysisCategory?> UpdateAnalysisCategory(int id, IAnalysisCategory analysisCategory)
     {

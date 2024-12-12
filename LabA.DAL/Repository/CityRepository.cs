@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -24,6 +25,7 @@ public class CityRepository(LabAContext context) : ICityRepository
         ArgumentNullException.ThrowIfNull(city, nameof(city));
 
         var entity = city.MapToEntity();
+
         await context.Cities.AddAsync(entity);
         await context.SaveChangesAsync();
 

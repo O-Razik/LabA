@@ -120,6 +120,6 @@ public class AutoMapper : Profile
         CreateMap<Sex, ISex>()
             .ForMember(dest => dest.Clients, opt => opt.MapFrom(src => src.Clients.Cast<IClient>().ToList()));
         CreateMap<ISex,Sex>()
-            .ForMember(dest => dest.Clients, opt => opt.MapFrom(src => src.Clients.Cast<IClient>().ToList()));
+            .ForMember(dest => dest.Clients, opt => opt.MapFrom(src => src.Clients.Cast<Client>().ToList()));
     }
 }

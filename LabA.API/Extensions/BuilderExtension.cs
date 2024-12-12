@@ -17,10 +17,10 @@ public static class BuilderExtension
     public static void AddAll(this WebApplicationBuilder builder)
     {
         builder.AddDbContext();
-        // builder.AddModels();
+        builder.AddModels();
         builder.AddRepositories();
         builder.AddServices();
-        builder.Services.AddAutoMapper(typeof(BLL.AutoMapper.AutoMapper).Assembly);
+        //builder.Services.AddAutoMapper(typeof(BLL.AutoMapper.AutoMapper).Assembly);
     }
 
     public static void AddDbContext(this WebApplicationBuilder builder)

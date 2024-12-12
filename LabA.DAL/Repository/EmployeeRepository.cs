@@ -1,7 +1,9 @@
-﻿using LabA.Abstraction.IModel;
+﻿using LabA.Abstraction.DTO;
+using LabA.Abstraction.IModel;
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -30,6 +32,12 @@ public class EmployeeRepository(LabAContext context) : IEmployeeRepository
         ArgumentNullException.ThrowIfNull(employee, nameof(employee));
 
         var entity = employee.MapToEntity();
+
+        if (entity.Position != null)
+        {
+            context.Entry(entity.Position).State = EntityState.Unchanged;
+        }
+
         await context.Employees.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;
@@ -67,5 +75,16 @@ public class EmployeeRepository(LabAContext context) : IEmployeeRepository
         await context.SaveChangesAsync();
 
         return employee;
+    }
+
+    public async Task<IEnumerable<IEmployee>> GetEmployeesByLaboratoryAsync(ILaboratory laboratory)
+    {
+        var employees = await context.Employees
+            .Include(e => e.Laboratory)
+            .Include(e => e.Position)
+            .Where(e => e.LaboratoryId == laboratory.LaboratoryId)
+            .ToListAsync();
+
+        return employees.ToList();
     }
 }

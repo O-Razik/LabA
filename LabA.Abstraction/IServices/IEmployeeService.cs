@@ -11,4 +11,5 @@ public interface IEmployeeService
     public Task<IEmployee?> DeleteEmployeeAsync(int id);
 
     public void Validate(IEmployee employee);
+    Task<IEnumerable<IEmployee>> GetEmployeesByLaboratoryAsync(ILaboratory laboratory);
 }

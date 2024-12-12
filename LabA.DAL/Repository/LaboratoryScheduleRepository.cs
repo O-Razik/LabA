@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -31,6 +32,13 @@ public class LaboratoryScheduleRepository(LabAContext context) : ILaboratorySche
 
         var entity = laboratorySchedule.MapToEntity();
         await context.LaboratorySchedules.AddAsync(entity);
+
+        // Safely get the maximum LaboratoryScheduleId or default to 0 if there are no entries
+        var index = await context.LaboratorySchedules.AnyAsync()
+            ? await context.LaboratorySchedules.MaxAsync(s => s.LaboratoryScheduleId)
+            : 0;
+
+        entity.LaboratoryScheduleId = index + 1;
         await context.SaveChangesAsync();
         return entity;
     }

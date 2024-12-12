@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace LabA.DAL.Repository;
@@ -10,13 +11,17 @@ public class ScheduleRepository(LabAContext context) : IScheduleRepository
 {
     public async Task<IEnumerable<ISchedule>> GetAllSchedulesAsync()
     {
-        var schedules = await context.Schedules.ToListAsync();
+        var schedules = await context.Schedules
+            .Include(s => s.Day)
+            .ToListAsync();
         return schedules.Cast<ISchedule>().ToList();
     }
 
     public async Task<ISchedule?> GetScheduleByIdAsync(int id)
     {
-        return await context.Schedules.FirstOrDefaultAsync(s => s.ScheduleId == id);
+        return await context.Schedules
+            .Include(s => s.Day)
+            .FirstOrDefaultAsync(s => s.ScheduleId == id);
     }
 
     public async Task<ISchedule> AddScheduleAsync(ISchedule schedule)
@@ -24,6 +29,12 @@ public class ScheduleRepository(LabAContext context) : IScheduleRepository
         ArgumentNullException.ThrowIfNull(schedule, nameof(schedule));
 
         var entity = schedule.MapToEntity();
+
+        if (entity.Day != null)
+        {
+            context.Entry(entity.Day).State = EntityState.Unchanged;
+        }
+
         await context.Schedules.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;

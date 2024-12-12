@@ -18,21 +18,6 @@ public class SexService(IUnitOfWork unitOfWork) : ISexService
         return await unitOfWork.SexRepository.GetSexByIdAsync(id);
     }
 
-    public Task<ISex> AddSexAsync(ISex sex)
-    {
-        return unitOfWork.SexRepository.AddSexAsync(sex);
-    }
-
-    public Task<ISex?> UpdateSexAsync(int id, ISex sex)
-    {
-        return unitOfWork.SexRepository.UpdateSexAsync(id, sex);
-    }
-
-    public Task<ISex?> DeleteSexAsync(int id)
-    {
-        return unitOfWork.SexRepository.DeleteSexAsync(id);
-    }
-
     public void Validate(ISex sex)
     {
         if (sex == null)

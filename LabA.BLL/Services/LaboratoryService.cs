@@ -33,6 +33,11 @@ public class LaboratoryService(IUnitOfWork unitOfWork) : ILaboratoryService
         return await unitOfWork.LaboratoryRepository.DeleteLaboratoryAsync(id);
     }
 
+    public Task<IEnumerable<ILaboratory>> GetLaboratoriesByCityAsync(int id)
+    {
+        return unitOfWork.LaboratoryRepository.GetLaboratoriesByCityAsync(id);
+    }
+
     public void Validate(ILaboratory laboratory)
     {
         if (laboratory == null)

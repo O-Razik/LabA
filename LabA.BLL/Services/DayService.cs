@@ -18,21 +18,6 @@ public class DayService(IUnitOfWork unitOfWork) : IDayService
         return await _unitOfWork.DayRepository.GetDayByIdAsync(id);
     }
 
-    public async Task<IDay> AddDayAsync(IDay day)
-    {
-        return await _unitOfWork.DayRepository.AddDayAsync(day);
-    }
-
-    public async Task<IDay?> UpdateDayAsync(int id, IDay day)
-    {
-        return await _unitOfWork.DayRepository.UpdateDayAsync(id, day);
-    }
-
-    public async Task<IDay?> DeleteDayAsync(int id)
-    {
-        return await _unitOfWork.DayRepository.DeleteDayAsync(id);
-    }
-
     public void Validate(IDay day)
     {
         if (day == null)

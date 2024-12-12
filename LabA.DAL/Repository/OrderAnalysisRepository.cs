@@ -2,6 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.DAL.Data;
 using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -32,6 +33,13 @@ public class OrderAnalysisRepository(LabAContext context) : IOrderAnalysisReposi
         ArgumentNullException.ThrowIfNull(orderAnalysis, nameof(orderAnalysis));
 
         var entity = orderAnalysis.MapToEntity();
+
+        // Safely get the maximum OrderAnalysisId or default to 0 if there are no entries
+        var index = await context.OrderAnalyses.AnyAsync()
+            ? await context.OrderAnalyses.MaxAsync(o => o.OrderAnalysisId)
+            : 0;
+
+        entity.OrderAnalysisId = index + 1;
         await context.OrderAnalyses.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;

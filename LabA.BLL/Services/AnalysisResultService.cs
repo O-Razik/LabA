@@ -40,11 +40,6 @@ public class AnalysisResultService(IUnitOfWork unitOfWork) : IAnalysisResultServ
             throw new ArgumentNullException(nameof(analysisResult));
         }
 
-        if (analysisResult.AnalysisResultId < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(analysisResult.AnalysisResultId));
-        }
-
         if (analysisResult.OrderAnalysisId < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(analysisResult.OrderAnalysisId));

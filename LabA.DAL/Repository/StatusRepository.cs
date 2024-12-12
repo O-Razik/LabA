@@ -2,7 +2,7 @@
 using LabA.Abstraction.IRepository;
 using LabA.Abstraction.IModel;
 using LabA.DAL.Data;
-using LabA.DAL.Mappers;
+using LabA.DAL.Mappers.Entity;
 
 namespace LabA.DAL.Repository;
 
@@ -24,6 +24,13 @@ public class StatusRepository(LabAContext context) : IStatusRepository
         ArgumentNullException.ThrowIfNull(status, nameof(status));
 
         var entity = status.MapToEntity();
+
+        // Safely get the maximum StatusId or default to 0 if there are no entries
+        var index = await context.Statuses.AnyAsync()
+            ? await context.Statuses.MaxAsync(s => s.StatusId)
+            : 0;
+
+        entity.StatusId = index + 1;
         await context.Statuses.AddAsync(entity);
         await context.SaveChangesAsync();
         return entity;
